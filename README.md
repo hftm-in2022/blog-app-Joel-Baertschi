@@ -1,30 +1,66 @@
-<<<<<<< HEAD
-# BlogApp
+# Angular Blog App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+## Description
 
-## Development server
+The Angular Blog App is a web application built using Angular framework, featuring SCSS for styling and employing best practices for code quality, testing, and deployment. This project serves as a platform to showcase blog posts and provide a seamless user experience.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- Angular framework for dynamic web applications.
+- SCSS for enhanced styling capabilities.
+- Integrated ESLint for static code analysis.
+- Prettier for automatic code formatting.
+- CommitLint for enforcing commit message conventions.
+- Lint Staged and Husky for ensuring code quality on commits.
+- Continuous Integration and Continuous Deployment (CI/CD) with GitHub Actions.
+- Automated updates for Angular dependencies.
+- Deployed on Azure Static Web Apps.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+To get started with this project, follow these steps:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/hftm-in2022/angular-blog-app-hamsiga-rajaratnam.git
+   ```
 
-## Running unit tests
+2.	Navigate into the project directory:
+```bash
+cd blog-app
+```
+3.	Install the dependencies:
+```bash 
+npm install
+```
+4.	Run the application:
+```bash 
+ng serve
+```
+5.	Open your browser and navigate to:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+http://localhost:4200
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Code Quality Tools
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
+This project uses the following tools for maintaining code quality:
 
+- ESLint: For static code analysis.
+- Prettier: For code formatting.
+- CommitLint: To check commit messages.
+- Lint Staged & Husky: To enforce code quality at commit time.
+
+## CI/CD Pipeline
+
+This project is integrated with GitHub Actions for continuous integration and deployment. The pipeline will:
+
+- Build the project on every commit.
+- Run unit tests and integration tests.
+- Automatically update Angular dependencies.
+
+## Deployment
+
+The application is automatically deployed to Azure Static Web Apps. You can access the live application at Azure Deployment Link.
+https://black-mushroom-0c0e39010.5.azurestaticapps.net/
