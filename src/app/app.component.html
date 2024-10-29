@@ -9,8 +9,27 @@
 
 <!-- src/app/app.component.html -->
 <h1>{{ title }}</h1>
-<app-card></app-card>
-<!-- Füge die CardComponent hier hinzu -->
+<div class="card-container">
+  <app-card
+    [title]="currentCard.title"
+    [subtitle]="currentCard.subtitle"
+    [image]="currentCard.image"
+    [content]="currentCard.content"
+  >
+  </app-card>
+</div>
+
+<div class="navigation-buttons">
+  <button mat-raised-button color="primary" (click)="previousCard()">
+    Vorheriger
+  </button>
+  <button mat-raised-button color="primary" (click)="showRandom()">
+    Zufällig
+  </button>
+  <button mat-raised-button color="primary" (click)="nextCard()">
+    Nächster
+  </button>
+</div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
