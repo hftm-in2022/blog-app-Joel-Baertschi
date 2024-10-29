@@ -21,27 +21,32 @@ The Angular Blog App is a web application built using Angular framework, featuri
 To get started with this project, follow these steps:
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/hftm-in2022/angular-blog-app-hamsiga-rajaratnam.git
    ```
 
-2.	Navigate into the project directory:
+2. Navigate into the project directory:
+
 ```bash
 cd blog-app
 ```
-3.	Install the dependencies:
-```bash 
+
+3. Install the dependencies:
+
+```bash
 npm install
 ```
-4.	Run the application:
-```bash 
+
+4. Run the application:
+
+```bash
 ng serve
 ```
-5.	Open your browser and navigate to:
+
+5. Open your browser and navigate to:
 
 http://localhost:4200
-
-
 
 ## Code Quality Tools
 
@@ -63,4 +68,4 @@ This project is integrated with GitHub Actions for continuous integration and de
 ## Deployment
 
 The application is automatically deployed to Azure Static Web Apps. You can access the live application at Azure Deployment Link.
-https://black-mushroom-0c0e39010.5.azurestaticapps.net/
+https://purple-moss-08e6b6a03.5.azurestaticapps.net
