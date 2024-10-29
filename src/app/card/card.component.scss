@@ -1,0 +1,12 @@
+// src/app/card/card.component.scss
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+  height: 40px; /* Höhe des Avatars */
+  width: 40px; /* Breite des Avatars */
+  border-radius: 50%; /* Damit es rund aussieht */
+}
