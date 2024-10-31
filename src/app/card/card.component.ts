@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { Blog } from '../interface/blog';
 
 @Component({
   selector: 'app-card',
@@ -12,8 +13,5 @@ import { CommonModule } from '@angular/common';
   imports: [MatCardModule, MatButtonModule, CommonModule], // Material Modules importieren
 })
 export class CardComponent {
-  @Input() title!: string; // Eingabe für den Titel der Karte
-  @Input() subtitle!: string; // Eingabe für den Untertitel der Karte
-  @Input() image!: string; // Eingabe für das Bild der Karte
-  @Input() content!: string;
+  @Input() blog!: Blog;
 }

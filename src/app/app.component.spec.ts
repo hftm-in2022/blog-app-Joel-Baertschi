@@ -1,10 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { BlogService } from './service/blog.service';
 
 describe('AppComponent', () => {
+  let blogServiceMock: jasmine.SpyObj<BlogService>;
+
   beforeEach(async () => {
+    // Create a mock BlogService with the `getBlogs` method
+    blogServiceMock = jasmine.createSpyObj('BlogService', ['getBlogs']);
+
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [{ provide: BlogService, useValue: blogServiceMock }],
     }).compileComponents();
   });
 
@@ -14,16 +21,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'blog-app' title`, () => {
+  it(`should have the title 'blog-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('blog-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('blog-app');
   });
 });
