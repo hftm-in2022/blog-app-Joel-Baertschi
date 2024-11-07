@@ -1,62 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CardComponent } from './card/card.component';
-import { CommonModule } from '@angular/common';
-import { Blog } from './interface/blog';
-import { BlogResponse } from './interface/blog';
-import { BlogService } from './service/blog.service';
+import { z } from 'zod';
+import { environment } from '../environments/environment';
+import { map, Observable } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
+const BlogSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  contentPreview: z.string(),
+  author: z.string(),
+  likes: z.number(),
+  comments: z.number(),
+  likedByMe: z.boolean(),
+  createdByMe: z.boolean(),
+  headerImageUrl: z.string().optional(),
+});
+
+const BlogArraySchema = z.array(BlogSchema);
+
+const EntriesSchema = z.object({
+  data: BlogArraySchema,
+  pageIndex: z.number(),
+  pageSize: z.number(),
+  totalCount: z.number(),
+  maxPageSize: z.number(),
+});
+
+export type Blog = z.infer<typeof BlogSchema>;
+
+export type Entries = z.infer<typeof EntriesSchema>;
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CardComponent, CommonModule],
+  imports: [
+    RouterOutlet,
+    NgIf,
+    AsyncPipe,
+    MatCardModule,
+    MatButtonModule,
+    MatIcon,
+  ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'blog-app';
-  blogs: Blog[] = [];
 
-  constructor(private blogService: BlogService) {}
+  httpClient = inject(HttpClient);
+  blogs$: Observable<Entries>;
 
-  ngOnInit(): void {
-    this.onGetBlogs();
-  }
-
-  onGetBlogs(): void {
-    this.blogService.getBlogs().subscribe({
-      next: (response: BlogResponse) => {
-        console.log('Response:', response); // Zum Debuggen
-        this.blogs = response.data; // Zugriff auf die data-Eigenschaft
-      },
-      error: (error) => console.log(error),
-      complete: () => console.log('Done'),
-    });
-  }
-
-  currentCardIndex = 0; // Der Index des aktuell angezeigten Cards
-
-  // Funktion zum Wechseln zur nächsten Karte
-  nextCard() {
-    console.log(this.blogs);
-    this.currentCardIndex = (this.currentCardIndex + 1) % this.blogs.length; // Zum nächsten oder zurück zum ersten
-  }
-
-  // Funktion zum Wechseln zur vorherigen Karte
-  previousCard() {
-    this.currentCardIndex =
-      (this.currentCardIndex - 1 + this.blogs.length) % this.blogs.length; // Zurück zur vorherigen oder zum letzten
-  }
-
-  showRandom() {
-    let randomIndex: number;
-    do {
-      randomIndex = Math.floor(Math.random() * this.blogs.length);
-    } while (randomIndex === this.currentCardIndex); // Sicherstellen, dass der Index nicht gleich dem aktuellen ist
-    this.currentCardIndex = randomIndex;
-  }
-
-  get currentCard(): Blog {
-    return this.blogs[this.currentCardIndex]; // Gibt die aktuelle Karte zurück
+  constructor() {
+    this.blogs$ = this.httpClient
+      .get<Entries>(`${environment.serviceUrl}/entries`)
+      .pipe(map((entries) => EntriesSchema.parse(entries)));
   }
 }

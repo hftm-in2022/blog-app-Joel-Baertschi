@@ -1,38 +1,59 @@
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; // Abstand zwischen den Karten
-  justify-content: center; // Zentriert die Karten
-}
+:host {
+  .blog-container {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
 
-.navigation-buttons {
-  display: flex; // Verteile den Platz zwischen den Schaltflächen
-  justify-content: center;
-  margin-top: 20px;
-  width: 100%; // Volle Breite nutzen
+  @media screen and (min-width: 450px) {
+    .blog-container {
+      width: 400px;
+    }
+  }
 
-  button {
-    margin: 0 10px; // Abstand zwischen den Schaltflächen
-    font-size: 16px; // Schriftgröße
-    padding: 10px 20px; // Padding für mehr Fläche
-    border-radius: 5px; // Abgerundete Ecken
-    transition:
-      background-color 0.3s,
-      color 0.3s; // Sanfter Übergang
+  @media screen and (min-width: 841px) {
+    .blog-container {
+      width: 840px;
+    }
+  }
 
-    &.mat-button {
-      background-color: #3f51b5; // Primäre Farbe
-      color: white; // Textfarbe
+  @media screen and (min-width: 1261px) {
+    .blog-container {
+      width: 1260px;
+    }
+  }
+
+  @media screen and (min-width: 1681px) {
+    .blog-container {
+      width: 1680px;
+    }
+  }
+
+  .blog-card {
+    margin: 0.625rem;
+    width: 400px;
+
+    .card-title {
+      min-height: 4rem;
     }
 
-    &:hover {
-      background-color: #303f9f; // Dunklere Farbe beim Hover
-      color: white; // Textfarbe bleibt weiß
+    .blog-image {
+      border-radius: 0.8rem;
+      margin: 0.8rem;
     }
 
-    &:focus {
-      outline: none; // Entferne den Standard-Fokusrahmen
-      box-shadow: 0 0 5px rgba(63, 81, 181, 0.5); // Fokus-Effekt
+    .blog-footer {
+      display: flex;
+
+      .blog-author {
+        flex-grow: 1;
+
+        p {
+          margin-top: 0;
+        }
+      }
     }
   }
 }
